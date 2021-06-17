@@ -3163,7 +3163,7 @@
 	#banner {
 		background-attachment: scroll,							fixed;
 		background-color: #666;
-		background-image: url("images/nasa_night.png"), url("../../images/nasa_night.jpg");
+		background-image: url("images/ISS_View.png"), url("../../images/ISS_View.jpg");
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
