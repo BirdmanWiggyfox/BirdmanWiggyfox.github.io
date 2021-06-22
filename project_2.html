@@ -42,17 +42,47 @@
 			<!-- Main -->
 				<section id="main" class="container">
 					<header>
-						<h2>Lunar Beacon</h2>
+						<h2>Lunar Navigational Beacons</h2>
 						<p>Project with NASA MSFC working on the fesiability of lunar navigational beacons</p>
 					</header>
 
 					<div class="box">
 						<span class="image featured"><img src="images/lunarBeacons/banner.png" alt="" /></span>
+						<h3>Using Beacons for Navigation</h3>
+						<p>During an internship with NASA Marshall Space Flight Center, I helped with determining the fesiability of using lunar navigiational beacons to support future missions as part of the Artimis program. Sample return missions, which would reterieve a sample from inside perminately shaded craters on the lunar south pole, would benfit from the positional data gathered by a set of navigational beacons. Working with a team of interns, we studied the fesiability of these beacons, culminating in a final proposed design. </p>
 
-						<p><span class="image fit"><img src="images/lunarBeacons/trajectory.png" alt="" /></span>As part of my capstone project at Ohio State, we explored using bouyancy to propel an aircraft to explore the Venusian atmosphere. By inflating and deflating internal lungs, the aircraft can control its bouyancy and use the vertical forces to glide forward.</p>
-						<p><span class="image fit"><img src="images/lunarBeacons/optimizedControler.png" alt="" /></span>As part of my capstone project at Ohio State, we explored using bouyancy to propel an aircraft to explore the Venusian atmosphere. By inflating and deflating internal lungs, the aircraft can control its bouyancy and use the vertical forces to glide forward.</p>
-						<p><span class="image fit"><img src="images/lunarBeacons/landingSites.png" alt="" /></span>As part of my capstone project at Ohio State, we explored using bouyancy to propel an aircraft to explore the Venusian atmosphere. By inflating and deflating internal lungs, the aircraft can control its bouyancy and use the vertical forces to glide forward.</p>
-						<p><span class="image fit"><img src="images/lunarBeacons/CraterCoverage.png" alt="" /></span>As part of my capstone project at Ohio State, we explored using bouyancy to propel an aircraft to explore the Venusian atmosphere. By inflating and deflating internal lungs, the aircraft can control its bouyancy and use the vertical forces to glide forward.</p>
+						<p>We worked through two main potential solutions which main difference was the deplorment of 3+ beacons to the surface around a crater. The first design deploys each beacon to the surface from orbit-to-ground, independent of each other. The second lands a single craft from orbit, where several beacons then are deployed from the main landing craft to their desired locations (ground-to-ground). My work focused heavily on identifying potential landing locations and the navigational system which would deploy the ground-to-ground beacons. </p>
+
+						<h3>PILOT</h3>
+
+						<p>To help understand requirements for the ground-to-ground system, I worked on designing a software package in MATLAB which is used to find the optimum trajectory between two locations on the lunar surface.  PILOT (<b>P</b>rogram for <b>I</b>dentifying <b>L</b>unar <b>O</b>ptimum  <b>T</b>rajectories) first determines ideal landing locations and thens finds the corresponding optimal thrust control to pilot each beacon for a soft-landing at those locations. The title image above summeraizes this process by showing potential landing sites and the coresponding trajectories to reach them on Shackleton Crater.</p>
+
+						<h4>Trajectory Optimization</h4>
+						<p>Since assuming a impulsive burn would inappropiate given the short time in flight the burns were considered to be finite, which increased the dificutilt in determining the required performace. Since the goal was to determine how much fuel this system would need given a estimated dry mass, the results for the optimal trajectory will give good estimate on the performace required. The nonlinear problem (mass changes) was converted into a covex optimziation problem provides and was able to provide a global obtimal solution for the control of each beacon given a constant thrust. The resuting trajectory and control for a sample beacon is shown below.</p>
+
+
+						<p><span class="image fit"><img src="images/lunarBeacons/trajectory.png" alt="" /></span></p>
+						<p><span class="image fit"><img src="images/lunarBeacons/optimizedControler.png" alt="" /></span>Since there is a constraint on the thrust provided, the solution appeas to be a bang-bang solution, full thrust at the beginging and the end of the trajectory. There are addtional constraints on the landing angle and final velocity at the surface which would provide each beacon a soft and percise landing. </p>
+
+						<h4>Landing Site Selection</h4>
+						<p>As part of the landing site selection, images captured from the Lunar Reconnosience Orbiter (LRO) was used to create a topograpic map in MATLAB. This was then used to identify locations which met the following critera:</p>
+						<ul>
+							<li>Must be relitively flat (slope < 10 deg)</li>
+							<li>Must be able to see into the crater.</li>
+							<li>Must have high solar avilability.</li>
+						</ul>
+
+						<p>The flatness of the surface was found simply using the topograpic data to find the slope of the surface, and was included as a constraint to ensure a safe landing to prevent the beacon from tipping over. The view into the crater was found using a viewshed of the crater, given a location at the bottom and a height of 5 ft for the attenna. The solar availbility was calculated using solar availabilty maps for the lunar south pole, dervied by NASA, to identify locations along the rim that would either perminate, or almost perminate, view of the sun. There are few locations along the rim for Shackleton crater that meet all of these critera and those that do were graded on a scale to help identify the best landing locations for the beacons.
+
+						<p><span class="image fit"><img src="images/lunarBeacons/landingSites.png" alt="" /></span>It is important to identify what locations have view access into the crater, since these beacons would provide most benifical for missions that descend into the crater. The view analysis is shown below, and highlights how the beacons located at varius locations around the rim have different view access. Ideality, the sample return mission would acces locations that has a high of a view as possible. </p>
+						<p><span class="image fit"><img src="images/lunarBeacons/CraterCoverage.png" alt="" /></span></p>
+
+						<h4>Final Design</h4>
+						<p>In the end, the ground-to-ground beacon system was determined to be inferior to the orbit-to-ground, which deployed each beacon in orbit rather than after landing a larger craft. The main driving factor is the mission requirements resulting from the size and shape of Shackleton Crater. The distance each beacon would have to travel and the small vaiable landing regions along the rim puts high requirements on the propulsion and control systems, enough that the intial landing craft which contains all the beacons, would be just as heavy as four seperate landing systems. Since the four seperate landing systems would be identical, it would reduce complexity and development costs and provide significate addtional fleximbiility if needed since each beacon is not limited to a radius around the landing craft.</p>
+
+						<p>This project helped my improve my technical skills, but gave an important insight into making changes to a project because of mission requirements. The PILOT program was adapted to find the optimal control for a soft-landing only for the orbit-to-ground beacon system (removing the launch phase) and the landing site identifyication and selection system was appliciable to both systems.</p>
+
+						<p>Using deployable ground beacons would be much more applicable to uses where the beacons do not have to travel far from the landing craft, and where they don't require percise landing locations. This might work on applications where a large, human lander and the resulting extravehiclar activieies would benfit from a ground based "GPS".</p>
 
 
 
