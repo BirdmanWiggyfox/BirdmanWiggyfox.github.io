@@ -60,9 +60,14 @@
 						<h4>Trajectory Optimization</h4>
 						<p>Since assuming a impulsive burn would inappropriate given the short time in flight the burns were considered to be finite, which increased the difficult in determining the required performance. Since the goal was to determine how much fuel this system would need given a estimated dry mass, the results for the optimal trajectory will give good estimate on the performance required. The nonlinear problem (mass changes) was converted into a convex optimization problem provides and was able to provide a global optimal solution for the control of each beacon given a constant thrust. Below is a sample trajectory and its corresponding optimal control.</p>
 
+						<div class="box alt">
+							<div class="row gtr-50 gtr-uniform">
+								<div class="col-6"><span class="image fit"><img src="images/lunarBeacons/trajectory.png" alt="" /></span></div>
+								<div class="col-6"><span class="image fit"><img src="images/lunarBeacons/optimizedControler.png" alt="" /></div>
+							</div>
+						</div>
 
-						<p><span class="image fit"><img src="images/lunarBeacons/trajectory.png" alt="" /></span></p>
-						<p><span class="image fit"><img src="images/lunarBeacons/optimizedControler.png" alt="" /></span>Since there is a constraint on the thrust provided, the solution is represented by a bang-bang solution, full thrust at the beginning and the end of the trajectory. There are additional constraints on the landing angle and final velocity at the surface which would provide each beacon a soft and precise landing. </p>
+						<p>Since there is a constraint on the thrust provided, the solution is represented by a bang-bang solution, full thrust at the beginning and the end of the trajectory. There are additional constraints on the landing angle and final velocity at the surface which would provide each beacon a soft and precise landing. </p>
 
 						<h4>Landing Site Selection</h4>
 						<p>As part of the landing site selection, images captured from the Lunar Reconnaissance  Orbiter (LRO) was used to create a topographic map in MATLAB. This was then used to identify locations which met the following criteria:</p>
