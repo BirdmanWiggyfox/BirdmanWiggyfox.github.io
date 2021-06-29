@@ -47,7 +47,39 @@
 					</header>
 
 					<div class="box">
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<span class="image featured"><img src="images/flyby/orbitAngle.png" alt="" /></span>
+
+						<h4>Objective</h4>
+						<p>Coupling many successive planetary flybys is often the best way to for exploration missions to reach the outer planets. When looking at a valid trajectory design the launch C3 energy (C3), the time of flight(TOF), and the incoming velocity at the target(Vinf) need to be considered. The goal is to minimize these parameters so the mission reduces fuel usage at launch and arrival and ensures the mission's length is reasonable.</p>
+
+						<p>The objective of this project was to create a set of MATLAB programs that will accept a certain sequence of planets over a searching window. Then, the program will search within that space for trajectories that minimize the C3, TOF, and Vinf. The specific searching algorithm is important as valid launch windows are relatively small compared to an open searching space. One requirement that I wanted, was to make changing the sequence of planets straightforward, and be able to adapt to different types of flybys, resonant orbits and multi-revolution Type 3/4+ orbits. </p>
+
+						<h4>Design</h4>
+
+						<p> There are many constraints that are placed when identifying these trajectories. The state variables are the dates for each planetary flyby including launch and arrival. A lamberts solver is used to find the trajectory between each event. Two successive solutions (i.e. one flyby) are used to validate that the specific state, by ensuring that the two trajectories patch together for an unpowered flyby. </p>
+
+						<p>A cost function is used to compare each set of flyby dates and the optimizer will adjust the state variables (dates) to minimize this cost. The function takes into account invalid trajectories by heavily penalizing them. Invalid trajectories are where the flyby Vinfity does not match for a flyby requiring a powered flyby, the flyby intersects the surface of the planet (not ideal), or they trajectory has too high of C3, TOF and arrival Vinf. </p>
+
+						<p>To search the state space for the optimum solution a particle swarm optimization algorithm was used. Each particle starts at a random state, and then searching depending on the cost of global group, the local group and its own tendency in the search space. </p>
+
+						<h4>Neptune Trajectory</h4>
+						<p>This program was ultimately used to identify a trajectory to Neptune. The final mission design was a Venus-Earth-Earth-Mars-Jupiter-Neptune (VEEMJN) trajectory, with a 3:2 resonant Earth orbit and a multiple revolution Type-III to the first Earth flyby. </p>
+
+						<span class="image right"><img src="images/flyby/otherTrajectories.png" width="500" alt="" /></span>
+
+						<p>Using the same program, it was able to find a (VEEJN) trajectory. the final design was compared to this alternative trajectory and a Hohmann transfer between Earth and Neptune.</p>
+
+						<p>The selected VEEMJN trajectory is better than the default Hohmann transfer as well as the other ballistic trajectory design.</p>
+
+
+						<h4>Modeling in GMAT</h4>
+						<span class="image fit"><img src="images/flyby/outerTrajectory.png" alt="" /></span>
+						<span class="image fit"><img src="images/flyby/innerTrajectory.png" alt="" /></span>
+						<p>Two Trajectory Correction Maneuvers (TCMs) per flyby were planned to ensure the spacecraft's trajectory maintains the correct path. GMAT was used to find the required maneuvers by targeting B-plane parameters and the date of the flyby. By using backward propagation, the maneuvers are adjusted to target the B-Plane parameters of the next flyby. This process is summarized in the table below.</p>
+						<span class="image fit"><img src="images/flyby/summaryTable.png" alt="" /></span>
+
+						<h4>Conclusions</h4>
+						<p>This project gave me great experience in working with complex trajectory design and modeling with GMAT. By creating many supportive programming in MATLAB, including a robust Lambert problem solver, solving for B-plane parameters, and using Meeus algorithm to find the position and velocity of planets. I enjoyed implementing optimization techniques and the challenges with programming this problem in MATLAB while making it robust to inputting multiple different trajectory designs. </p>
 
 						<ul class="actions special">
 							<li><a href="project_0_Landing.html" class="button alt">See More Projects</a></li>
